@@ -1,8 +1,11 @@
 section .data
     floor db 0
+    instructions times 4096 db 0
     message db "Santa ended up on floor ", 0
+
 section .text
     global _start
+
 _start:
     ; open input file
     mov eax, 5
@@ -17,13 +20,13 @@ _start:
     mov eax, 4
     xor ecx, ecx
     mov cl, buffer_size
-    mov edx, buffer
+    mov edx, instructions
     int 0x80
 
     ; read from file
     mov eax, 3
-    mov ebx, eax
-    mov ecx, buffer
+    mov ebx, [ebp - 4]
+    mov ecx, instructions
     mov edx, buffer_size
     int 0x80
 
@@ -33,7 +36,7 @@ _start:
     int 0x80
 
     ; process input
-    mov esi, buffer
+    mov esi, instructions
     mov edi, message
 
 next_char:
@@ -47,14 +50,18 @@ next_char:
     je decrement_floor
 
     ; skip non-parenthesis characters
-    jmp next_char
+    jmp skip_char
 
 increment_floor:
     inc byte [floor]
-    jmp next_char
+    jmp skip_char
 
 decrement_floor:
     dec byte [floor]
+    jmp skip_char
+
+skip_char:
+    inc esi
     jmp next_char
 
 print_result:
@@ -103,3 +110,4 @@ section .data
     buffer_size equ 4096
     message_length equ $ - message
     newline db 10
+
