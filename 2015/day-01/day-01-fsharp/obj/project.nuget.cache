@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kwr5r+O+qA0zvWXqhciJ52W1PO2CAVDGUMjEOvctyGz/z2jd6O1XZxG1cAsjtG2Waxx+ps5GpdUvBMl1bW76sQ==",
+  "success": true,
+  "projectFilePath": "C:\\xtra\\AdventOfCode\\2015\\day-01\\day-01-fsharp\\day-01-fsharp.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mario.astorga\\.nuget\\packages\\fsharp.core\\7.0.0\\fsharp.core.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
